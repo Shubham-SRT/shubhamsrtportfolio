@@ -1,4 +1,5 @@
-import { ArrowRight, Shield, Bug, Lock } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import profileImage from "@/assets/profile-image.png";
 
 const Hero = () => {
   const skillBadges = [
@@ -56,16 +57,26 @@ const Hero = () => {
           ))}
         </div>
 
-        {/* Hero Icons - Centered display */}
-        <div className="flex justify-center gap-8 mt-16 md:mt-24 pb-16">
-          <div className="w-20 h-20 md:w-28 md:h-28 bg-primary rounded-full flex items-center justify-center animate-float">
-            <Shield className="w-10 h-10 md:w-14 md:h-14 text-primary-foreground" />
-          </div>
-          <div className="w-24 h-24 md:w-32 md:h-32 bg-skill-cyan rounded-full flex items-center justify-center animate-float-delayed">
-            <Bug className="w-12 h-12 md:w-16 md:h-16 text-foreground" />
-          </div>
-          <div className="w-20 h-20 md:w-28 md:h-28 bg-skill-orange rounded-full flex items-center justify-center animate-float-slow">
-            <Lock className="w-10 h-10 md:w-14 md:h-14 text-foreground" />
+        {/* Profile Image */}
+        <div className="flex justify-center mt-12 md:mt-16 pb-16">
+          <div className="relative">
+            {/* Decorative rings */}
+            <div className="absolute -inset-4 md:-inset-6 rounded-full border-2 border-skill-cyan/30 animate-pulse" />
+            <div className="absolute -inset-8 md:-inset-12 rounded-full border border-skill-orange/20" />
+            
+            {/* Main image container */}
+            <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-primary shadow-2xl">
+              <img
+                src={profileImage}
+                alt="Shubham Rawat - Cybersecurity Analyst"
+                className="w-full h-full object-cover object-top"
+              />
+            </div>
+            
+            {/* Floating accent */}
+            <div className="absolute -bottom-2 -right-2 w-16 h-16 md:w-20 md:h-20 bg-skill-cyan rounded-full flex items-center justify-center animate-float shadow-lg">
+              <span className="text-foreground font-bold text-xs md:text-sm">VAPT</span>
+            </div>
           </div>
         </div>
       </div>
