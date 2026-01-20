@@ -15,7 +15,8 @@ export default {
     extend: {
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
-        display: ['Space Grotesk', 'sans-serif'],
+        display: ['JetBrains Mono', 'monospace'],
+        mono: ['JetBrains Mono', 'monospace'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -68,6 +69,10 @@ export default {
           green: "hsl(var(--skill-green))",
           yellow: "hsl(var(--skill-yellow))",
         },
+        neon: {
+          green: "hsl(var(--neon-green))",
+          glow: "hsl(var(--neon-glow))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -95,6 +100,14 @@ export default {
           from: { transform: "translateY(30px)", opacity: "0" },
           to: { transform: "translateY(0)", opacity: "1" },
         },
+        "pulse-neon": {
+          "0%, 100%": { 
+            boxShadow: "0 0 5px hsl(145 100% 50% / 0.3), 0 0 20px hsl(145 100% 50% / 0.1)"
+          },
+          "50%": { 
+            boxShadow: "0 0 10px hsl(145 100% 50% / 0.5), 0 0 40px hsl(145 100% 50% / 0.2)"
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -102,6 +115,7 @@ export default {
         "slide-in-left": "slide-in-left 0.6s ease-out",
         "slide-in-right": "slide-in-right 0.6s ease-out",
         "fade-in-up": "fade-in-up 0.6s ease-out",
+        "pulse-neon": "pulse-neon 2s ease-in-out infinite",
       },
     },
   },

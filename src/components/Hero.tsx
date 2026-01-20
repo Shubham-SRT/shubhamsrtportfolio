@@ -1,7 +1,15 @@
 import { ArrowRight } from "lucide-react";
+import { useEffect, useState } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import profileImage from "@/assets/profile-image.png";
 
 const Hero = () => {
+  const [scrollY, setScrollY] = useState(0);
+  const { scrollYProgress } = useScroll();
+  const y = useTransform(scrollYProgress, [0, 0.5], [0, 150]);
+  const scale = useTransform(scrollYProgress, [0, 0.3], [1, 0.9]);
+  const opacity = useTransform(scrollYProgress, [0, 0.4], [1, 0.3]);
+
   const skillBadges = [
     { label: "VAPT", color: "skill-badge-cyan", rotation: "-rotate-6", position: "left-[5%] top-[35%]" },
     { label: "Bug Bounty", color: "skill-badge-orange", rotation: "rotate-3", position: "left-[2%] top-[55%]" },
@@ -12,73 +20,113 @@ const Hero = () => {
 
   return (
     <section className="relative min-h-screen pt-24 bg-card grid-pattern overflow-hidden">
+      {/* Scanning line effect */}
+      <div className="scan-line" />
+      
       {/* Decorative oval shape */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-[60%] bg-secondary rounded-t-full opacity-50" />
       
       <div className="container mx-auto px-6 relative z-10">
         <div className="flex flex-col items-center text-center pt-16 md:pt-24">
           {/* Main Title */}
-          <h1 className="hero-title text-foreground mb-8">
-            SECURITY<br />ANALYST
-          </h1>
+          <motion.h1 
+            className="hero-title text-foreground mb-8"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <span className="text-skill-green">&gt;</span> SECURITY<br />ANALYST_
+          </motion.h1>
 
           {/* Description */}
-          <div className="max-w-3xl mx-auto grid md:grid-cols-2 gap-8 mb-8">
-            <p className="text-muted-foreground text-left">
-              Entry-level Cybersecurity Analyst with 1+ year of hands-on experience in web application security, 
+          <motion.div 
+            className="max-w-3xl mx-auto grid md:grid-cols-2 gap-8 mb-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            <p className="text-muted-foreground text-left font-mono text-sm">
+              <span className="text-skill-green">//</span> Entry-level Cybersecurity Analyst with 1+ year of hands-on experience in web application security, 
               vulnerability assessment, and penetration testing.
             </p>
-            <p className="text-muted-foreground text-left">
-              Active bug bounty hunter on HackerOne with multiple Hall of Fame recognitions. 
+            <p className="text-muted-foreground text-left font-mono text-sm">
+              <span className="text-skill-green">//</span> Active bug bounty hunter on HackerOne with multiple Hall of Fame recognitions. 
               Strong foundation in OWASP Top 10, Burp Suite, and real-world attack scenarios.
             </p>
-          </div>
+          </motion.div>
 
           {/* CTA */}
-          <a
+          <motion.a
             href="#contact"
-            className="inline-flex items-center gap-2 text-foreground font-semibold uppercase tracking-wide text-sm hover:gap-4 transition-all duration-300 group"
+            className="inline-flex items-center gap-2 text-foreground font-mono font-semibold uppercase tracking-wide text-sm hover:gap-4 transition-all duration-300 group px-6 py-3 border border-skill-green/50 hover:border-skill-green hover:bg-skill-green/10 rounded"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
           >
-            Get in Touch
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </a>
+            <span className="text-skill-green">$</span> Get_in_Touch
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform text-skill-green" />
+          </motion.a>
         </div>
 
         {/* Floating Skill Badges - Hidden on mobile, visible on larger screens */}
         <div className="hidden lg:block">
           {skillBadges.map((badge, index) => (
-            <div
+            <motion.div
               key={badge.label}
-              className={`absolute ${badge.position} ${badge.color} ${badge.rotation} animate-float`}
+              className={`absolute ${badge.position} ${badge.color} ${badge.rotation} animate-float neon-card`}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
               style={{ animationDelay: `${index * 0.5}s` }}
             >
               {badge.label}
-            </div>
+            </motion.div>
           ))}
         </div>
 
-        {/* Profile Image */}
-        <div className="flex justify-center mt-12 md:mt-16 pb-16">
+        {/* Profile Image with Parallax */}
+        <motion.div 
+          className="flex justify-center mt-12 md:mt-16 pb-16"
+          style={{ y, scale, opacity }}
+        >
           <div className="relative">
-            {/* Decorative rings */}
-            <div className="absolute -inset-4 md:-inset-6 rounded-full border-2 border-skill-cyan/30 animate-pulse" />
-            <div className="absolute -inset-8 md:-inset-12 rounded-full border border-skill-orange/20" />
+            {/* Decorative neon rings */}
+            <div className="absolute -inset-4 md:-inset-6 rounded-full border-2 border-skill-green/40 animate-pulse-neon" />
+            <div className="absolute -inset-8 md:-inset-12 rounded-full border border-skill-green/20" />
+            <div className="absolute -inset-12 md:-inset-16 rounded-full border border-skill-green/10" />
             
-            {/* Main image container */}
-            <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-primary shadow-2xl">
+            {/* Main image container - adjusted to prevent clipping */}
+            <div className="relative w-56 h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden border-2 border-skill-green/50 shadow-[0_0_30px_hsl(145_100%_50%_/_0.2)]">
               <img
                 src={profileImage}
                 alt="Shubham Rawat - Cybersecurity Analyst"
-                className="w-full h-full object-cover object-top"
+                className="w-full h-full object-cover object-center scale-110"
               />
+              {/* Overlay gradient */}
+              <div className="absolute inset-0 bg-gradient-to-t from-skill-green/10 to-transparent" />
             </div>
             
-            {/* Floating accent */}
-            <div className="absolute -bottom-2 -right-2 w-16 h-16 md:w-20 md:h-20 bg-skill-cyan rounded-full flex items-center justify-center animate-float shadow-lg">
-              <span className="text-foreground font-bold text-xs md:text-sm">VAPT</span>
-            </div>
+            {/* Floating accent badge */}
+            <motion.div 
+              className="absolute -bottom-2 -right-2 w-14 h-14 md:w-16 md:h-16 bg-skill-green rounded-full flex items-center justify-center animate-float shadow-[0_0_20px_hsl(145_100%_50%_/_0.4)]"
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.5, delay: 1.2, type: "spring" }}
+            >
+              <span className="text-foreground font-mono font-bold text-xs">VAPT</span>
+            </motion.div>
+
+            {/* Additional decorative element */}
+            <motion.div 
+              className="absolute -top-4 -left-4 w-10 h-10 md:w-12 md:h-12 border-2 border-skill-cyan/50 rounded-full flex items-center justify-center"
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.5, delay: 1.4, type: "spring" }}
+            >
+              <span className="text-skill-cyan font-mono text-xs">01</span>
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
