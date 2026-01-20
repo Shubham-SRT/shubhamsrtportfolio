@@ -1,4 +1,5 @@
 import { ExternalLink } from "lucide-react";
+import { motion } from "framer-motion";
 
 const Experience = () => {
   const experiences = [
@@ -47,38 +48,55 @@ const Experience = () => {
   ];
 
   return (
-    <section id="experience" className="py-24 bg-card grid-pattern">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <span className="skill-badge-orange mb-6 inline-block">Experience</span>
+    <section id="experience" className="py-24 bg-card grid-pattern relative">
+      <div className="container mx-auto px-6 relative z-10">
+        <motion.div 
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          <span className="skill-badge-orange mb-6 inline-block">
+            <span className="text-foreground mr-1">&lt;</span>Experience<span className="text-foreground ml-1">/&gt;</span>
+          </span>
           <h2 className="section-title text-foreground">
-            Professional Journey
+            Professional_Journey
           </h2>
-        </div>
+        </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-16">
           {/* Experience */}
-          <div>
-            <h3 className="text-2xl font-display font-semibold text-foreground mb-8 flex items-center gap-3">
-              <span className="w-3 h-3 bg-skill-cyan rounded-full" />
-              Work Experience
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <h3 className="text-xl font-mono font-semibold text-foreground mb-8 flex items-center gap-3">
+              <span className="w-3 h-3 bg-skill-green rounded-full shadow-[0_0_10px_hsl(145_100%_50%_/_0.5)]" />
+              <span className="text-skill-green">$</span> Work_Experience
             </h3>
             <div className="space-y-8">
-              {experiences.map((exp) => (
-                <div
+              {experiences.map((exp, index) => (
+                <motion.div
                   key={exp.title}
-                  className="relative pl-8 border-l-2 border-muted pb-8 last:pb-0"
+                  className="relative pl-8 border-l-2 border-skill-green/30 pb-8 last:pb-0"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <div className={`absolute -left-[9px] top-0 w-4 h-4 ${exp.color} rounded-full`} />
+                  <div className={`absolute -left-[9px] top-0 w-4 h-4 ${exp.color} rounded-full shadow-lg`} />
                   <div className="mb-4">
-                    <h4 className="text-xl font-display font-semibold text-foreground">
+                    <h4 className="text-lg font-mono font-semibold text-foreground">
                       {exp.title}
                     </h4>
-                    <p className="text-skill-cyan font-medium flex items-center gap-2">
+                    <p className="text-skill-green font-mono font-medium flex items-center gap-2">
                       {exp.company}
                       <ExternalLink className="w-3 h-3" />
                     </p>
-                    <p className="text-muted-foreground text-sm">{exp.period}</p>
+                    <p className="text-muted-foreground text-sm font-mono">{exp.period}</p>
                   </div>
                   <ul className="space-y-2">
                     {exp.highlights.map((highlight, idx) => (
@@ -86,42 +104,55 @@ const Experience = () => {
                         key={idx}
                         className="text-muted-foreground text-sm flex items-start gap-2"
                       >
-                        <span className="w-1.5 h-1.5 bg-muted-foreground rounded-full mt-2 shrink-0" />
+                        <span className="text-skill-green mt-1 shrink-0">&gt;</span>
                         {highlight}
                       </li>
                     ))}
                   </ul>
-                </div>
+                </motion.div>
               ))}
             </div>
-          </div>
+          </motion.div>
 
-          {/* Education */}
-          <div>
-            <h3 className="text-2xl font-display font-semibold text-foreground mb-8 flex items-center gap-3">
-              <span className="w-3 h-3 bg-skill-pink rounded-full" />
-              Education
+          {/* Education - Compact glassmorphism cards */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <h3 className="text-xl font-mono font-semibold text-foreground mb-8 flex items-center gap-3">
+              <span className="w-3 h-3 bg-skill-pink rounded-full shadow-[0_0_10px_hsl(340_85%_60%_/_0.5)]" />
+              <span className="text-skill-pink">$</span> Education
             </h3>
-            <div className="space-y-6">
-              {education.map((edu) => (
-                <div
+            <div className="space-y-4">
+              {education.map((edu, index) => (
+                <motion.div
                   key={edu.degree}
-                  className="p-6 bg-card border border-border rounded-lg hover:border-skill-pink/50 transition-colors"
+                  className="p-4 glass-card rounded-lg border-l-2 border-skill-green/40 hover:border-skill-green transition-colors"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <h4 className="text-lg font-display font-semibold text-foreground">
-                    {edu.degree}
-                  </h4>
-                  <p className="text-skill-pink font-medium">{edu.institution}</p>
-                  <p className="text-muted-foreground text-sm">{edu.period}</p>
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <h4 className="text-sm font-mono font-semibold text-foreground">
+                        {edu.degree}
+                      </h4>
+                      <p className="text-skill-green font-mono text-xs">{edu.institution}</p>
+                    </div>
+                    <span className="text-muted-foreground text-xs font-mono shrink-0">{edu.period}</span>
+                  </div>
                   {edu.specialization && (
-                    <span className="inline-block mt-3 px-3 py-1 bg-skill-pink/10 text-skill-pink text-xs font-medium rounded-full">
+                    <span className="inline-block mt-2 px-2 py-0.5 bg-skill-green/10 text-skill-green text-xs font-mono rounded border border-skill-green/30">
                       {edu.specialization}
                     </span>
                   )}
-                </div>
+                </motion.div>
               ))}
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
