@@ -91,12 +91,12 @@ const Hero = () => {
             <div className="absolute -inset-8 md:-inset-14 rounded-full border border-skill-green/20" />
             <div className="absolute -inset-12 md:-inset-20 rounded-full border border-skill-green/10" />
             
-            {/* Main image container - larger and properly contained */}
-            <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-2 border-skill-green/50 shadow-[0_0_40px_hsl(145_100%_50%_/_0.25)]">
+            {/* Main image container - larger with centered face */}
+            <div className="relative w-72 h-72 md:w-96 md:h-96 lg:w-[450px] lg:h-[450px] rounded-full overflow-hidden border-2 border-skill-green/50 shadow-[0_0_40px_hsl(145_100%_50%_/_0.25)]">
               <img
                 src={profileImage}
                 alt="Shubham Rawat - Cybersecurity Analyst"
-                className="w-full h-full object-cover object-center"
+                className="w-full h-full object-cover object-[center_20%]"
               />
               {/* Overlay gradient */}
               <div className="absolute inset-0 bg-gradient-to-t from-skill-green/10 to-transparent" />

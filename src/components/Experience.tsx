@@ -92,11 +92,11 @@ const Experience = () => {
                     <h4 className="text-base font-mono font-semibold text-foreground leading-tight">
                       {exp.title}
                     </h4>
-                    <p className="text-skill-green font-mono text-sm font-medium flex items-center gap-2">
+                    <p className="text-skill-cyan font-mono text-sm font-medium flex items-center gap-2">
                       {exp.company}
                       <ExternalLink className="w-3 h-3" />
                     </p>
-                    <p className="text-muted-foreground text-xs font-mono">{exp.period}</p>
+                    <p className="text-foreground/60 text-xs font-mono">{exp.period}</p>
                   </div>
                   <ul className="space-y-1.5">
                     {exp.highlights.map((highlight, idx) => (
@@ -140,7 +140,7 @@ const Experience = () => {
                       <h4 className="text-sm font-mono font-semibold text-foreground truncate">
                         {edu.degree}
                       </h4>
-                      <p className="text-skill-green font-mono text-xs truncate">{edu.institution}</p>
+                      <p className="text-skill-cyan font-mono text-xs truncate">{edu.institution}</p>
                     </div>
                     <div className="flex items-center gap-2 shrink-0">
                       {edu.specialization && (
