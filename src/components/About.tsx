@@ -1,4 +1,5 @@
-import { Award, Trophy, FileText } from "lucide-react";
+import { Award, Trophy, FileText, ExternalLink } from "lucide-react";
+import { motion } from "framer-motion";
 
 const About = () => {
   const achievements = [
@@ -7,18 +8,21 @@ const About = () => {
       title: "Top 100 in India",
       description: "TryHackMe platform ranking",
       color: "bg-skill-yellow",
+      link: "https://tryhackme.com/p/InnovativeNoob",
     },
     {
       icon: Award,
       title: "Hall of Fame",
       description: "iHerb, Doppler, TrueCaller, Phenom",
       color: "bg-skill-cyan",
+      link: null,
     },
     {
       icon: FileText,
       title: "CAP Certified",
       description: "Certified App-Sec Practitioner",
       color: "bg-skill-green",
+      link: "https://candidate.speedexam.net/certificate.aspx?SSTATE=am4131EniU8ntjp4bO5mXYIp6DvNiAM3y1aTKDNdH9KmPNlBme8jpPDGN0f0qx7Un1xqxS+AOiNCJYmtfkl3Wd0EtaFiskhSFcKpYg1xi9E=",
     },
   ];
 
@@ -51,24 +55,39 @@ const About = () => {
           </div>
 
           {/* Right Column - Achievements */}
-          <div className="space-y-6">
-            {achievements.map((achievement, index) => (
-              <div
-                key={achievement.title}
-                className="flex items-start gap-6 p-6 bg-primary-foreground/5 rounded-lg hover:bg-primary-foreground/10 transition-colors"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <div className={`${achievement.color} p-4 rounded-lg shrink-0`}>
-                  <achievement.icon className="w-8 h-8 text-foreground" />
-                </div>
-                <div>
-                  <h3 className="text-primary-foreground font-display font-semibold text-xl mb-2">
-                    {achievement.title}
-                  </h3>
-                  <p className="text-primary-foreground/70">{achievement.description}</p>
-                </div>
-              </div>
-            ))}
+          <div className="space-y-4">
+            {achievements.map((achievement, index) => {
+              const CardWrapper = achievement.link ? motion.a : motion.div;
+              const cardProps = achievement.link 
+                ? { href: achievement.link, target: "_blank", rel: "noopener noreferrer" }
+                : {};
+              
+              return (
+                <CardWrapper
+                  key={achievement.title}
+                  {...cardProps}
+                  className={`flex items-center gap-5 p-5 bg-primary-foreground/5 rounded-lg hover:bg-primary-foreground/10 transition-all duration-300 border border-transparent hover:border-skill-green/30 ${achievement.link ? 'cursor-pointer group' : ''}`}
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: index * 0.1 }}
+                  whileHover={{ x: 5 }}
+                >
+                  <div className={`${achievement.color} p-3 rounded-lg shrink-0 shadow-lg`}>
+                    <achievement.icon className="w-6 h-6 text-foreground" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-primary-foreground font-mono font-semibold text-lg flex items-center gap-2">
+                      {achievement.title}
+                      {achievement.link && (
+                        <ExternalLink className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity text-skill-green" />
+                      )}
+                    </h3>
+                    <p className="text-primary-foreground/70 text-sm">{achievement.description}</p>
+                  </div>
+                </CardWrapper>
+              );
+            })}
           </div>
         </div>
       </div>
