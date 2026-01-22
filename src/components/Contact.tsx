@@ -1,4 +1,4 @@
-import { Mail, Phone, MapPin, Linkedin, Twitter, ArrowUpRight } from "lucide-react";
+import { Mail, MapPin, Linkedin, Twitter, ArrowUpRight } from "lucide-react";
 
 const Contact = () => {
   const contactInfo = [
@@ -7,12 +7,6 @@ const Contact = () => {
       label: "Email",
       value: "shubhamrawatsrt@gmail.com",
       href: "mailto:shubhamrawatsrt@gmail.com",
-    },
-    {
-      icon: Phone,
-      label: "Phone",
-      value: "+91 9808407611",
-      href: "tel:+919808407611",
     },
     {
       icon: MapPin,
@@ -102,7 +96,7 @@ const Contact = () => {
 
                 {/* HackerOne */}
                 <a
-                  href="https://hackerone.com"
+                  href="https://hackerone.com/shubham_srt?type=user"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-between p-4 bg-skill-green text-foreground rounded-lg hover:bg-skill-green/80 transition-colors group"
@@ -116,7 +110,7 @@ const Contact = () => {
 
                 {/* TryHackMe */}
                 <a
-                  href="https://tryhackme.com"
+                  href="https://tryhackme.com/p/InnovativeNoob"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-between p-4 bg-skill-orange text-foreground rounded-lg hover:bg-skill-orange/80 transition-colors group"

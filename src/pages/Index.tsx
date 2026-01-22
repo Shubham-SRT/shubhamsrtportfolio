@@ -5,8 +5,15 @@ import Experience from "@/components/Experience";
 import Skills from "@/components/Skills";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import MatrixRain from "@/components/MatrixRain";
+import MeltOverlay from "@/components/MeltOverlay";
+import { useKonamiCode } from "@/hooks/useKonamiCode";
+import { useSudoCommand } from "@/hooks/useSudoCommand";
 
 const Index = () => {
+  const { isActivated: konamiActivated, reset: resetKonami } = useKonamiCode();
+  const { isActivated: sudoActivated, reset: resetSudo } = useSudoCommand();
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -18,6 +25,10 @@ const Index = () => {
         <Contact />
       </main>
       <Footer />
+      
+      {/* Easter Eggs */}
+      <MatrixRain isActive={konamiActivated} onComplete={resetKonami} />
+      <MeltOverlay isActive={sudoActivated} onComplete={resetSudo} />
     </div>
   );
 };
