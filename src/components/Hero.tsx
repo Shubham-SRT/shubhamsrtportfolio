@@ -1,10 +1,8 @@
 import { ArrowRight } from "lucide-react";
-import { useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import profileImage from "@/assets/profile-image.png";
 
 const Hero = () => {
-  const [scrollY, setScrollY] = useState(0);
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 0.5], [0, 150]);
   const scale = useTransform(scrollYProgress, [0, 0.3], [1, 0.9]);
@@ -19,9 +17,7 @@ const Hero = () => {
   ];
 
   return (
-    <section className="relative min-h-screen pt-24 bg-card grid-pattern overflow-hidden">
-      {/* Scanning line effect */}
-      <div className="scan-line" />
+    <section className="relative min-h-screen pt-20 md:pt-24 bg-card grid-pattern overflow-hidden">
       
       {/* Decorative oval shape */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-[60%] bg-secondary rounded-t-full opacity-50" />
@@ -30,12 +26,12 @@ const Hero = () => {
         <div className="flex flex-col items-center text-center pt-16 md:pt-24">
           {/* Main Title */}
           <motion.h1 
-            className="hero-title text-foreground mb-8"
+            className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tighter leading-none uppercase text-foreground mb-6 font-mono whitespace-nowrap"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <span className="text-skill-green">&gt;</span> SECURITY<br />ANALYST_
+            <span className="text-skill-green">&gt;</span> SHUBHAM_RAWAT
           </motion.h1>
 
           {/* Description */}
@@ -86,21 +82,21 @@ const Hero = () => {
 
         {/* Profile Image with Parallax */}
         <motion.div 
-          className="flex justify-center mt-12 md:mt-16 pb-16"
+          className="flex justify-center mt-8 md:mt-12 pb-12"
           style={{ y, scale, opacity }}
         >
           <div className="relative">
             {/* Decorative neon rings */}
-            <div className="absolute -inset-4 md:-inset-6 rounded-full border-2 border-skill-green/40 animate-pulse-neon" />
-            <div className="absolute -inset-8 md:-inset-12 rounded-full border border-skill-green/20" />
-            <div className="absolute -inset-12 md:-inset-16 rounded-full border border-skill-green/10" />
+            <div className="absolute -inset-4 md:-inset-8 rounded-full border-2 border-skill-green/40 animate-pulse-neon" />
+            <div className="absolute -inset-8 md:-inset-14 rounded-full border border-skill-green/20" />
+            <div className="absolute -inset-12 md:-inset-20 rounded-full border border-skill-green/10" />
             
-            {/* Main image container - adjusted to prevent clipping */}
-            <div className="relative w-56 h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden border-2 border-skill-green/50 shadow-[0_0_30px_hsl(145_100%_50%_/_0.2)]">
+            {/* Main image container - larger and properly contained */}
+            <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-2 border-skill-green/50 shadow-[0_0_40px_hsl(145_100%_50%_/_0.25)]">
               <img
                 src={profileImage}
                 alt="Shubham Rawat - Cybersecurity Analyst"
-                className="w-full h-full object-cover object-center scale-110"
+                className="w-full h-full object-cover object-center"
               />
               {/* Overlay gradient */}
               <div className="absolute inset-0 bg-gradient-to-t from-skill-green/10 to-transparent" />
@@ -108,22 +104,22 @@ const Hero = () => {
             
             {/* Floating accent badge */}
             <motion.div 
-              className="absolute -bottom-2 -right-2 w-14 h-14 md:w-16 md:h-16 bg-skill-green rounded-full flex items-center justify-center animate-float shadow-[0_0_20px_hsl(145_100%_50%_/_0.4)]"
+              className="absolute -bottom-2 -right-2 md:-bottom-3 md:-right-3 w-16 h-16 md:w-20 md:h-20 bg-skill-green rounded-full flex items-center justify-center animate-float shadow-[0_0_25px_hsl(145_100%_50%_/_0.5)]"
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ duration: 0.5, delay: 1.2, type: "spring" }}
             >
-              <span className="text-foreground font-mono font-bold text-xs">VAPT</span>
+              <span className="text-foreground font-mono font-bold text-sm md:text-base">VAPT</span>
             </motion.div>
 
             {/* Additional decorative element */}
             <motion.div 
-              className="absolute -top-4 -left-4 w-10 h-10 md:w-12 md:h-12 border-2 border-skill-cyan/50 rounded-full flex items-center justify-center"
+              className="absolute -top-4 -left-4 md:-top-6 md:-left-6 w-12 h-12 md:w-14 md:h-14 border-2 border-skill-cyan/50 rounded-full flex items-center justify-center bg-card/80 backdrop-blur-sm"
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ duration: 0.5, delay: 1.4, type: "spring" }}
             >
-              <span className="text-skill-cyan font-mono text-xs">01</span>
+              <span className="text-skill-cyan font-mono text-sm md:text-base font-bold">01</span>
             </motion.div>
           </div>
         </motion.div>

@@ -120,35 +120,6 @@ const Skills = () => {
           ))}
         </motion.div>
 
-        {/* Additional Skills */}
-        <motion.div 
-          className="mt-16 text-center"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-        >
-          <h3 className="text-lg font-mono font-semibold text-primary-foreground mb-6">
-            <span className="text-skill-green">$</span> Additional_Expertise
-          </h3>
-          <div className="flex flex-wrap justify-center gap-3">
-            {[
-              "Technical Reporting",
-              "Vuln Documentation",
-              "Secure Coding",
-              "Input Validation",
-              "Security Research",
-              "Community Contribution",
-            ].map((skill) => (
-              <span
-                key={skill}
-                className="px-4 py-2 border border-skill-green/30 text-primary-foreground rounded-full hover:border-skill-green/60 hover:bg-skill-green/10 transition-all font-mono text-sm cursor-default"
-              >
-                {skill}
-              </span>
-            ))}
-          </div>
-        </motion.div>
       </div>
     </section>
   );

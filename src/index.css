@@ -245,18 +245,6 @@
     clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
   }
 
-  /* Scanning line animation */
-  .scan-line {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, hsl(var(--neon-green) / 0.8), transparent);
-    z-index: 100;
-    animation: scan 8s linear infinite;
-    pointer-events: none;
-  }
 }
 
 @layer utilities {
@@ -311,12 +299,6 @@
     80% { transform: translate(-3px, 0); }
   }
 
-  @keyframes scan {
-    0% { top: 0; opacity: 0; }
-    5% { opacity: 1; }
-    95% { opacity: 1; }
-    100% { top: 100%; opacity: 0; }
-  }
 
   .font-mono {
     font-family: 'JetBrains Mono', monospace;
